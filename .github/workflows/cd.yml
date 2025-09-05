@@ -22,6 +22,11 @@ jobs:
             - name: Build
               run: npm run build
             
+            - name: Build and Push Docker image
+              run: |
+                gcloud builds submit \
+                  --tag us-central1-docker.pkg.dev/notely-471216/notely-ar-repo/notely:github-${{ github.sha }} .
+            
             - name: Setup gcloud
               uses: google-github-actions/setup-gcloud@v2
               with:
